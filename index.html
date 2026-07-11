@@ -33,30 +33,15 @@
 		document.addEventListener("keydown", (event) => {
 			if (event.key == "o") {
 				random_number = Math.floor(Math.random() * 10) + 1;
-				coins += random_number*2;
-				display.innerHTML = "lucky 7! coins earned: " + coins;
-                // 1. Define the delay helper function (takes milliseconds)
-        const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-        // 2. Use it inside an async function
-                async function runProcess() {
-                    console.log("Starting...");
-  
-                await delay(3000); // Waits exactly 3 seconds (3000ms)
-  
-                console.log("3 seconds later!");
-}
-
-                runProcess();
-                const song = new Audio("https://www.youtube.com/watch?v=nuvVlkP6IRo");
-                song.play();
-            }else{
-                coins+=random_number;
-                display.innerHTML = "rolled " + random_number + " ! coins: " + coins;
-                const song = new Audio("https://www.youtube.com/watch?v=Ij76x_px8jo");
-            }    
-
-        });
+				if (random_number == 7) {
+					coins += random_number * 2; // lucky! double coins
+					display.innerHTML = "Lucky 7! Coins: " + coins;
+				} else {
+					coins += random_number;
+					display.innerHTML = "Rolled " + random_number + "! Coins: " + coins;
+		}
+	}
+});
 	</script>
 </body>
 </html>
