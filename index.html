@@ -23,13 +23,7 @@
 		const display = document.getElementById("display");
 		let random_number = 0;
         let coins=0;
-        if (coins >= 100) {
-	            document.body.style.backgroundColor = "gold"; // unlocked at 100 coins!
-            } else if (coins >= 50) {
-	            document.body.style.backgroundColor = "orchid"; // unlocked at 50 coins!
-            } else if (coins >= 20) {
-	            document.body.style.backgroundColor = "lightgreen"; // unlocked at 20 coins!
-            }
+        
 		document.addEventListener("keydown", (event) => {
 			if (event.key == "o") {
 				random_number = Math.floor(Math.random() * 10) + 1;
@@ -39,7 +33,14 @@
 				} else {
 					coins += random_number;
 					display.innerHTML = "Rolled " + random_number + "! Coins: " + coins;
-		}
+			if (coins >= 100) {
+	            document.body.style.backgroundColor = "gold"; // unlocked at 100 coins!
+            } else if (coins >= 50) {
+	            document.body.style.backgroundColor = "orchid"; // unlocked at 50 coins!
+            } else if (coins >= 20) {
+	            document.body.style.backgroundColor = "lightgreen"; // unlocked at 20 coins!
+            }
+				}
 	}
 });
 	</script>
