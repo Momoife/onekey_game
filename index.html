@@ -15,6 +15,10 @@
 		font-size: 67px;
 		font-family: sans-serif;
 	}
+	@keyframes wobble{
+   	0%{transform:rotate(-5deg);}
+   	100%{transform:rotate(5deg);}
+}
 </style>
 </head>
 <body>
@@ -31,24 +35,28 @@
 				if (random_number == 7) {
 					coins += random_number * 2; // lucky! double coins
 					display.innerHTML = "Lucky 7! 🪙: " + coins;
+				} else if (random_number == 1) {
+					coins == 0 ; // unlucky! lose coins
+					display.innerHTML = "Unlucky 1! 🪙: " + coins;
 				} else {
 					coins += random_number;
 					display.innerHTML = "Rolled " + random_number + "! 🪙: " + coins;
+				}
 			if (coins >= 100) {
 	            document.body.style.backgroundColor = "red"; // unlocked at 100 coins!
-				display.innerHTML += "<br>youve reached 100 coins!"; // encouragement message
+				display.innerHTML += "<br>you've reached 100 coins!"; // encouragement message
 
             } else if (coins >= 50) {
 	            document.body.style.backgroundColor = "orchid"; // unlocked at 50 coins!
-				display.innerHTML += "<br>youve reached 50 coins!"; // encouragement message
+				display.innerHTML += "<br>you've reached 50 coins!"; // encouragement message
 
             } else if (coins >= 20) {
 	            document.body.style.backgroundColor = "yellow"; // unlocked at 20 coins!
-				display.innerHTML += "<br>youve reached 20 coins!"; // encouragement message
+				display.innerHTML += "<br>you've reached 20 coins!"; // encouragement message
 			}
 				}
-	}
-});
+		}
+	);
 	</script>
 </body>
 </html>
