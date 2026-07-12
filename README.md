@@ -1,4 +1,5 @@
-author:Momoifeoluwa Ogunjobi
+Author:Momoifeoluwa Ogunjobi
+
 this is a gambling game..
 that doesnt take any of your money
 it uses the key "o" that rolls out numbers for you. There is a lucky 7 that doubles your points and an unlucky 1 that removes your points
