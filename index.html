@@ -3,56 +3,106 @@
 <head>
 <style>
 	body {
-		background-color:  rgb(255, 236, 236)13;
-		display: flex;
+		background-image:  url("https://t3.ftcdn.net/jpg/00/97/46/36/240_F_97463619_ZHqQiR70xv5HRiTJlkfyetkzxrmezDtP.jpg");
+		background-size: cover;
+		background-position: center;
 		align-items: center;
 		justify-content: center;
 		height: 100vh;
 		margin: 0;
 	}
 	h1 {
-		color: black;
+		color: white;
+		font-size: 30px;
+		text-align: center;
+		font-family: 'Times New Roman', Courier, monospace;
+	}
+	h2 {
+		color: white;
 		font-size: 67px;
-		font-family: 'Courier New', Courier, monospace;
+		text-align: center;
+		font-family: 'Times New oman', Courier, monospace;
 	}
 	@keyframes wobble{
    	0%{transform:rotate(-5deg);}
    	100%{transform:rotate(5deg);}
 }
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  animation: confetti-fall 3s linear infinite;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
 </style>
 </head>
 <body>
-	<h1 id="display">Press "o" to start</h1>
+	<h2 id="title">The Great Canadian Casino</h2>
+	<br>
+	<h1 id="display">Press spacebar to start</h1>
+	<div id="confetti-container"></div>
+	<img src="https://media.tenor.com/8X9g0k1J3nIAAAAC/casino.gif" alt="casino gif" style="display: block; margin: 0 auto; width: 50%; height: auto;">
+	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 	<script>
 		const display = document.getElementById("display");
 		let random_number = 0;
         let coins=0;
-        
+        const audio = new Audio("Jackpot Slot Machine Sounds Effect Casino - SFX (128k).mp3");
 		document.addEventListener("keydown", (event) => {
-			if (event.key == "o") {
+		
+			if (event.key == " ") {
 				random_number = Math.floor(Math.random() * 10) + 1;
-				new Audio("Jackpot Slot Machine Sounds Effect Casino - SFX (128k).mp3").play();
+				audio.currentTime = 0; // reset audio to start
+				audio.play();
 				if (random_number == 7) {
 					coins += random_number * 2; // lucky! double coins
 					display.innerHTML = "Lucky 7! 🪙: " + coins;
+					display .style.animation = "wobble 0.5s infinite alternate"; // add wobble animation
 				} else if (random_number == 1) {
-					coins == 0 ; // unlucky! lose coins
+					coins = 0 ; // unlucky! lose coins
 					display.innerHTML = "Unlucky 1! 🪙: " + coins;
+					display.style.animation = "none"; // stop wobble animation
 				} else {
 					coins += random_number;
-					display.innerHTML = "Rolled a" + random_number + "! 🪙: " + coins;
+					display.innerHTML = "Rolled a " + random_number + "! 🪙: " + coins;
+					display.style.animation = "none"; // stop wobble animation 
 				}
-			if (coins >= 100) {
-	            document.body.style.backgroundColor = "red"; // unlocked at 100 coins!
-				display.innerHTML += "<br>you've reached 100 coins!"; // encouragement message
+			if (coins >= 250) {
+				confetti({
+  				particleCount: 200,
+ 				 spread: 100,
+ 				 origin: { y: 0.6 }
+				});
+				document.body.style.backgroundImage = "url('https://images.unsplash.com/flagged/photo-1593005510329-8a4035a7238f?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93JTIwd2FsbHBhcGVyfGVufDB8fDB8fHww')"; // change background image
+	            document.body.style.filter = "hue-rotate(30deg)"; // unlocked at 250 coins!
+				display.innerHTML += "<br>youve won! you're now a millionaire!"; // encouragement message
+				display.style.accentColor = "gold"; // change accent color to gold
+				display.style.fontSize = "80px"; // increase font size
+				display.style.animation = "wobble 0.5s infinite alternate"; // add wobble animation
+				display.style.textShadow = "0 0 10px gold"; // add text shadow
+				display.style.color = "gold"; // change text color to gold
+				display.style.fontFamily = "'Times New Roman', Times, serif"; // change font family
+				audio.pause();
+				return; // stop further execution
 
+			}
+			else if (coins >= 100) {
+	            document.body.style.filter = "hue-rotate(180deg)";
+				display.innerHTML += "<br>you've reached 100 coins!, youre a casino king!"; // encouragement message
+				
             } else if (coins >= 50) {
-	            document.body.style.backgroundColor = "orchid"; // unlocked at 50 coins!
-				display.innerHTML += "<br>you've reached 50 coins!"; // encouragement message
+				document.body.style.backgroundImage = "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVnipNaodhV_npGaQTGrs5iynRwtsWAgM51qqaMtDzu1jbyDZFYn5kuKU&s=10')"; // change background image
+	            document.body.style.filter = "hue-rotate(120deg)"; // unlocked at 50 coins!
+				display.innerHTML += "<br>you've reached 50 coins!, youre a high roller!"; // encouragement message
 
             } else if (coins >= 20) {
-	            document.body.style.backgroundColor = "yellow"; // unlocked at 20 coins!
-				display.innerHTML += "<br>you've reached 20 coins!"; // encouragement message
+				document.body.style.backgroundImage = "url('https://static.vecteezy.com/system/resources/thumbnails/066/154/005/small/blue-abstract-simple-design-background-vector.jpg')"; // change background image
+				document.body.style.filter = "hue-rotate(60deg)"; // unlocked at 20 coins!
+				display.innerHTML += "<br>you've reached 20 coins!, you're now a certified gambler!"; // encouragement message	
 			}
 				}
 		}
