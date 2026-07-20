@@ -43,7 +43,7 @@
 <body>
 	<h2 id="title">The Great Canadian Casino</h2>
 	<br>
-	<h1 id="display">Press spacebar to start</h1>
+	<h1 id="display">Press "a" to start</h1>
 	<div id="confetti-container"></div>
 	<img src="https://media.tenor.com/8X9g0k1J3nIAAAAC/casino.gif" alt="casino gif" style="display: block; margin: 0 auto; width: 50%; height: auto;">
 	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
@@ -54,7 +54,7 @@
         const audio = new Audio("Jackpot Slot Machine Sounds Effect Casino - SFX (128k).mp3");
 		document.addEventListener("keydown", (event) => {
 		
-			if (event.key == " ") {
+			if (event.key == "a") {
 				random_number = Math.floor(Math.random() * 10) + 1;
 				audio.currentTime = 0; // reset audio to start
 				audio.play();
